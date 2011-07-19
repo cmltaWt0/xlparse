@@ -12,7 +12,6 @@ Tested on python 3.2.
 Not work on python < 3 because module email and configparser change
 its syntax.
 """
-import sys
 from modules.send_mail import send_mail
 from modules.conf_fetcher import fetcher
 

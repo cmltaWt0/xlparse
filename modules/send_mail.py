@@ -1,4 +1,4 @@
-import smtplib
+from smtplib import SMTP
 import os
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
@@ -27,7 +27,7 @@ def send_mail(**a):
     part.add_header('Content-Disposition', 'attachment', filename=('utf-8', '', "%s" % os.path.basename(f)))  
     msg.attach(part)
   try:
-    smtp = smtplib.SMTP(a['server'])
+    smtp = SMTP(a['server'])
     smtp.sendmail(a['send_from'], a['send_to']+a['send_cc'], msg.as_string())
     smtp.close()
   except SMTPException:
