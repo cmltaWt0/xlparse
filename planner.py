@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 """
+The purpose of the programm is to organize some repeatedly job's.
+Such as sending message (now) or saving some generated file(need to release).
 This python program allows us to send a mail with included files.
 Now, this program calculate the current date and include to mail
 file which contain yesterday's date.

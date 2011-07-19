@@ -1,0 +1,14 @@
+The purpose of the programm is to organize some repeatedly job's.
+Such as sending message (now) or saving some generated file(need to release).
+This python program allows us to send a mail with included files.
+Now, this program calculate the current date and include to mail
+file which contain yesterday's date. (Report about last day).
+It's can send mail to diff recipients and CC recipients.
+But this program not universal now, it's for my use.
+Program alow to use some open smtp sever.
+Tested on python 3.2.
+Not work on python < 3 because module email and configparser change
+its syntax.
+Module xmlparse convert xls file to txt (manualy, worked only on 
+python2.7 and older). To use it type "python modules/xmlparse.py DAY"
+DAY - this is a day with which we need to search xls file.

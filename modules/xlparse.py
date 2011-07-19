@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-
+"""
+Purpose of this module is to convert xls file to txt.
+Working only via Python < 3.0
+"""
 import os
 import sys
 from xlrd import open_workbook, cellname
