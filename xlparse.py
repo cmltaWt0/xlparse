@@ -30,7 +30,7 @@ else:
 ####################################################################
 day = ['01', '02', '03', '04', '05', '06', '07', '08', '09']
 for i in range(10,32):
-    day.append(i)
+    day.append(str(i))
 
 begin = ['(100)', '(111)', '(112)', '(121)', '(122)', '(201)', '(202)', '(301)', '(302)', '(400)']
 sheet0 = 0
@@ -88,8 +88,11 @@ def transformation(event):
 def _open():
     global op
     op = tkFileDialog.askopenfilename()
+    filename = os.path.basename(op)
     tex.delete(1.0,END)
-    tex.insert(END,'Теперь введите день, для которого будет выполнено преобразование')
+    tex.insert(END,'Открыт файл ')
+    tex.insert(END, filename)
+    tex.insert(END, '.\nТеперь введите день, для которого будет выполнено преобразование')
 
 def _save():
     sa = tkFileDialog.asksaveasfilename()
@@ -134,7 +137,7 @@ fra3 = Frame(root, width=500, height=100, bd = 5)
 lab1 = Label(fra1, text="Откройте xls файл, который хотите преобразовать\nВведите в поле справа день месяца, для которого\nформируется текстовый файл. Будьте внимательны\nвыбирайте файл и день месяца одинаковые.\nС 1-го по 9-е числа вводятся как 01, 02 и т.д.", font="Arial 14")
 lab2 = Label(fra3, text="Если введённое чило не верно, его можно сменить и снова выполнить\nпреобразование кнопкой Transform, не открывая файл второй раз\nДля сохранения результата выберите File->Save.", font="Arial 14")
 ent = Entry(fra1, width=4)
-but = Button(fra1, text="Transform")
+but = Button(fra1, text="Преобразовать")
 tex = Text(fra2, width=60, height=20, font="12", wrap=WORD)
  
 lab1.grid(row = 0,column = 0)
