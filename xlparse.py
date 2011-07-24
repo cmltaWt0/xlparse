@@ -2,32 +2,15 @@
 # -*- coding: utf-8 -*-
 """
 Purpose of this program is to convert xls file to txt.
-Working only via Python < 3.0
+Working only via Python < 3.0 because xlrd module not ready
+for working with python3.
 """
 import os
 from Tkinter import *
 import tkFileDialog
 import fileinput
 from xlrd import open_workbook, cellname
-####################################################################
-#need to going to module
-from datetime import date
-from calendar import monthrange
 
-date_ = date.today()
-
-#calculate latest day in last mounth
-if date_.day == 1:
-    mrange_ = monthrange(date_.year, date_.month - 1)
-    date_ = date_.replace(month = date_.month - 1, day = mrange_[1])
-    date_file = date_.strftime("%d.%m.%Y")
-    date_dir = date_.strftime("%m.%Y")
-#calculate yesterday's day
-else:
-    date_ = date_.replace(day = date_.day -1)
-    date_file = date_.strftime("%d.%m.%Y")
-    date_dir = date_.strftime("%m.%Y")
-####################################################################
 day = ['01', '02', '03', '04', '05', '06', '07', '08', '09']
 for i in range(10,32):
     day.append(str(i))
