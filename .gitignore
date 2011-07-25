@@ -3,4 +3,4 @@
 *.so
 NOTES.txt
 *.swp
-tmp/tmp_file.txt
+*.txt
