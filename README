@@ -1,8 +1,9 @@
 Program contains of two part. First is xlparse.py that have GUI 
 interface and give ability to choise xls file to transform it to 
-txt file by prepared algoritm. Second part is planner.py which use 
-send_mail.py module to send mail with some included file (transformed 
-by xlparse, can organize sending by cron).
+txt file by prepared algoritm. tmp dir contain tmf result file. 
+Second part is planner.py which use send_mail.py module to send
+mail with some included file (transformed by xlparse, can organize
+sending by cron).
 Now, planner calculate the current date and include to mail
 file which contain yesterday's date. (Report about last day).
 It's can send mail to diff recipients and CC recipients.
