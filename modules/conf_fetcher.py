@@ -1,4 +1,4 @@
-import configparser
+import ConfigParser
 
 ########################################################################
 
@@ -23,8 +23,8 @@ else:
 
 def fetcher():
     a = {}
-    config = configparser.ConfigParser()
-    config.read('path_to_program_folder/conf/base.cfg')
+    config = ConfigParser.ConfigParser()
+    config.read('conf/base.cfg')
 
     a ['send_from'] = (config.get('from', 'send_from'))
     a ['send_to'] = [config.get('to', 'send_to1'), config.get('to', 'send_to2')]
