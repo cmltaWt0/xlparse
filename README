@@ -8,8 +8,7 @@ file which contain yesterday's date. (Report about last day).
 It's can send mail to diff recipients and CC recipients.
 But this program not universal now, it's for my use.
 Program alow to use some open smtp sever.
-Planner tested on python 3.2.
-Not work on python < 3 because module email and configparser change
+Not work on python >=3, only on python <=2.7  because module email and configparser change
 its syntax.
-Xlparse tested on python 2.7 because xlrd module not allowed for
+Xlparse tested on python <=2.7 because xlrd module not allowed for
 python3 now.
