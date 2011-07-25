@@ -1,3 +1,7 @@
+"""
+Create exe from python. Need for Windows users.
+Allow to avoid from installing Python lib.
+"""
 from distutils.core import setup
 import sys
 import py2exe

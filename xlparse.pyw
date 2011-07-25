@@ -1,9 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Purpose of this program is to convert xls file to txt.
-Working only via Python < 3.0 because xlrd module not ready
-for working with python3.
+xlparse.py have a GUI interface and give ability to choise xls file 
+to transform it to txt file by prepared algoritm. By using
+send_mail.py module xlparse allow to send mail with some attached file.
+Can attach src (xls file) of result (txt file).
+It's can send mail to diff recipients and CC recipients(config in 
+conf/base.cfg file).
+But this program not universal now, it's for my use.
+Program alow to use some open smtp sever.
+Xlparse tested on python <=2.7 because xlrd module not allowed for
+python3 now.
 """
 import os
 from Tkinter import *
@@ -68,6 +75,42 @@ def transformation(event):
         tex.delete(1.0,END)
         tex.insert(END,'Сначала откройте исходный файл xls')
 
+def mail_src(event):
+    from modules.send_mail import send_mail
+    from modules.conf_fetcher import fetcher
+  
+    a = fetcher() #take a dict with conf setting
+    if op:
+        a ['files'] = [op]
+ 
+    send_mail(**a)
+
+    tex.delete(1.0,END)
+    tex.insert(END,'Файл ')
+    tex.insert(END, op)
+    tex.insert(END, ' отправлен')
+
+def mail_res(event):
+    from modules.send_mail import send_mail
+    from modules.conf_fetcher import fetcher
+
+    tmp = 'tmp/tmp_file.txt'
+    a = fetcher() #take a dict with conf setting
+    
+    letter = tex.get(1.0,END)
+    f = open(tmp, "w")
+    f.write(letter)
+    f.close()
+    
+    a ['files'] = [tmp]
+
+    send_mail(**a)
+
+    tex.delete(1.0, END)
+    tex.insert(END, 'Результат сохранен во временный файл ')
+    tex.insert(END, 'tmp/tmp_file.txt')
+    tex.insert(END, ' и отправлен по почте')
+
 def _open():
     global op
     op = tkFileDialog.askopenfilename()
@@ -99,6 +142,7 @@ def _about():
 
 root = Tk()
 
+root.title('Xlparse')
 m = Menu(root)
 root.config(menu=m)
 fm = Menu(m)
@@ -120,19 +164,25 @@ fra3 = Frame(root, width=500, height=500, bd = 5)
 lab1 = Label(fra1, text="Откройте xls файл, который хотите преобразовать\nВведите в поле справа день месяца, для которого\nформируется текстовый файл. Будьте внимательны\nвыбирайте файл и день месяца одинаковые.\nС 1-го по 9-е числа вводятся как 01, 02 и т.д.", font="Arial 10")
 lab2 = Label(fra3, text="Если введённое чило не верно, его можно сменить и снова выполнить\nпреобразование кнопкой Transform, не открывая файл второй раз\nДля сохранения результата выберите File->Save.", font="Arial 10")
 ent = Entry(fra1, width=4)
-but = Button(fra1, text="Преобразовать")
+but1 = Button(fra1, text = "Преобразовать")
+but2 = Button(fra3, text = "Отправить исходник")
+but3 = Button(fra3, text = "Отправить результат")
 tex = Text(fra2, width=60, height=12, font="12", wrap=WORD)
  
-lab1.grid(row = 0,column = 0)
-ent.grid(row = 0,column = 1, padx=20)
-but.grid(row = 1,column = 1, padx=20)
-tex.grid(row = 0,column = 0)
-lab2.grid(row = 0,column = 0)
+lab1.grid(row = 0, column = 0)
+ent.grid(row = 0, column = 1, padx=20)
+but1.grid(row = 1, column = 1, padx=20)
+tex.grid(row = 0, column = 0)
+lab2.grid(row = 0, column = 0)
+but2.grid(row = 0, column = 1)
+but3.grid(row = 1, column = 1)
  
 fra1.pack()
 fra2.pack()  
 fra3.pack()
 
-but.bind("<Button-1>", transformation)
+but1.bind("<Button-1>", transformation)
+but2.bind("<Button-1>", mail_src)
+but3.bind("<Button-1>", mail_res)
     
 root.mainloop() 
