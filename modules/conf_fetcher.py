@@ -2,23 +2,12 @@ import ConfigParser
 
 ########################################################################
 
-#need to going to module
-from datetime import date
-from calendar import monthrange
+from datetime import date, timedelta
 
-date_ = date.today()
+yesterday = date.today() - timedelta(1)
 
-#calculate latest day in last mounth
-if date_.day == 1:
-    mrange_ = monthrange(date_.year, date_.month - 1)
-    date_ = date_.replace(month = date_.month - 1, day = mrange_[1])
-    date_file = date_.strftime("%d.%m.%Y")
-    date_dir = date_.strftime("%m.%Y")
-#calculate yesterday's day
-else:
-    date_ = date_.replace(day = date_.day -1)
-    date_file = date_.strftime("%d.%m.%Y")
-    date_dir = date_.strftime("%m.%Y")
+date_file = yesterday.strftime("%d.%m.%Y")
+date_dir = yesterday.strftime("%m.%Y")
 ########################################################################
 
 def fetcher():
