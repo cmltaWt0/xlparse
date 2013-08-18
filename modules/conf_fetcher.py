@@ -1,18 +1,15 @@
-import ConfigParser
-
-########################################################################
-
+from ConfigParser import ConfigParser
 from datetime import date, timedelta
 
 yesterday = date.today() - timedelta(1)
 
 date_file = yesterday.strftime("%d.%m.%Y")
 date_dir = yesterday.strftime("%m.%Y")
-########################################################################
+
 
 def fetcher():
     a = {}
-    config = ConfigParser.ConfigParser()
+    config = ConfigParser()
     config.read('conf/base.cfg')
 
     a ['send_from'] = (config.get('from', 'send_from'))
